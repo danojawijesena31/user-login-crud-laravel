@@ -13,7 +13,7 @@ class AuthManager extends Controller
 {
     function login(){ 
         if(Auth::check()){
-            return redirect(route('home'));
+            return redirect(route('member.index'));
         }
         return view('login');
     }
@@ -33,7 +33,7 @@ class AuthManager extends Controller
     
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)){
-            return redirect()->intended(route('home'))->with("success", "Login successful!");
+            return redirect()->intended(route('member.index'))->with("success", "Login successful!");
         } 
         return redirect(route('login'))->with("error", "Login details are not valid");
     }

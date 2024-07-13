@@ -18,9 +18,9 @@ use App\Http\Controllers\MemberController;
 //     return view('welcome');
 // })->name('home'); 
 
-Route::get('/', function(){
-    return view('members.index');
-})->name('home');
+// Route::get('/', function(){
+//     return view('members.index');
+// })->name('home');
 
 Route::get('/login',[AuthManager::class,'login'])->name('login');
 Route::get('/registration',[AuthManager::class,'registration'])->name('registration'); 
@@ -39,9 +39,14 @@ Route::group(['middleware' => 'auth'], function (){
 
 // Member route
 
-Route::get('/member', [MemberController::class, 'index'])->name('member.index'); 
+Route::get('/', [MemberController::class, 'index'])->name('member.index'); 
 Route::get('/member/create', [MemberController::class, 'create'])->name('member.create');
 Route::post('/member', [MemberController::class, 'memberPost'])->name('member.post');
+Route::get('/member/{member}/edit', [MemberController::class, 'edit'])->name('member.edit');
+Route::put('/member/{member}/update', [MemberController::class, 'update'])->name('member.update'); 
+Route::delete('/member/{member}/delete', [MemberController::class, 'delete'])->name('member.delete'); 
+
+Route::get('/member/view/{member}', [MemberController::class, 'view'])->name('member.view');
 
 
 

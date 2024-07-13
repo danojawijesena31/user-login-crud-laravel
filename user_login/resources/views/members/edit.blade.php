@@ -26,21 +26,22 @@
         @endif
     </div>
 
-    <form action="{{ route('member.post') }}" method="POST" class="ms-auto me-auto mt-3" style="width: 500px">
+    <form action="{{route('member.update', ['member' => $member])}}" method="POST" class="ms-auto me-auto mt-3" style="width: 500px">
         @csrf
+        @method('put')
         <div class="mb-3">
             <label class="form-label">Member Name</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" value="{{$member->name}}">
         </div>
         <div class="mb-3">
             <label class="form-label">Address</label>
-            <input type="text" class="form-control" name="address">
+            <input type="text" class="form-control" name="address" value="{{$member->address}}">
         </div>
         <div class="mb-3">
             <label class="form-label">Phone Number</label>
-            <input type="integer" class="form-control" name="phone_number">
+            <input type="integer" class="form-control" name="phone_number" value="{{$member->phone_number}}">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
 </div>
